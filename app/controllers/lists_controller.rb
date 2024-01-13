@@ -30,6 +30,7 @@ class ListsController < ApplicationController
   end
 
   def set_list
-    @list = List.find(params[:id])
+    #Using .includes loads the DB into memory to reduce total DB queries
+    @list = List.includes(:movies).find(params[:id])
   end
 end

@@ -1,1 +1,9 @@
-<%= @lists %>
+<% @lists.each do |list| %>
+  <ol>
+    <li>
+      <%= list.name %>
+    </li>
+  </ol>
+<% end %>
+
+<%= link_to 'Create New List', new_list_url %>

@@ -2,12 +2,16 @@ class BookmarksController < ApplicationController
 
   def new
     @bookmark = Bookmark.new
+    @list = List.find(params[:list_id])
+    @movies = Movie.all
   end
 
   def create
-    @bookmark = Bookmark.new(bookmark_params)
     @list = List.find(params[:list_id])
-    @bookmark.list_id = @list.id
+    # Dillion recommends the following because it adds the bookmark and automatically sets the ID
+    @bookmark = @list.bookmarks.new(bookmark_params)
+    # @bookmark = Bookmark.new(bookmark_params)
+    # @bookmark.list_id = @list.id
     if @bookmark.save
       redirect_to @list
     else
@@ -24,6 +28,6 @@ class BookmarksController < ApplicationController
   private
 
   def bookmark_params
-    params.require(:bookmark).permit(:comment, :movie_id, :list_id)
+    params.require(:bookmark).permit(:comment, :movie_id)
   end
 end
