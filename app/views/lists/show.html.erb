@@ -1,13 +1,11 @@
 <h1>
   <%= @list.name %>
 </h1>
+<%= link_to '❮ View Lists', lists_url, class: "btn btn-primary" %>
+<%= link_to '✚ New Bookmark', new_list_bookmark_path(@list), class: "btn btn-primary" %>
 
 <div class="container d-flex">
   <% @list.bookmarks.each do |bookmark| %>
     <%= render '/movie', bookmark: bookmark %>
   <% end %>
 </div>
-
-
-<%= link_to 'View Lists', lists_url %>
-<%= link_to 'New Bookmark', new_list_bookmark_path(@list) %>

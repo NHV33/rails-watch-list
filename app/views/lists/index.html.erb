@@ -1,9 +1,10 @@
-<% @lists.each do |list| %>
-  <ol>
-    <li>
-      <%= list.name %>
-    </li>
-  </ol>
-<% end %>
-
-<%= link_to 'Create New List', new_list_url %>
+<div class="container w-50 d-flex flex-column justify-content-center align-content-center">
+  <% @lists.each do |list| %>
+    <ol class="m-3 border bg-white">
+      <li class="m-3">
+        <%= link_to list.name, list_path(list) %>
+      </li>
+    </ol>
+  <% end %>
+  <%= link_to '✚ Create New List', new_list_url, class: "btn btn-primary" %>
+</div>
